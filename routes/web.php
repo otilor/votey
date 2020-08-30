@@ -26,3 +26,16 @@ Route::get('/home', 'HomeController@index')->name('home');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+
+Route::group(['prefix' => 'admin'], function () {
+   Route::get('dashboard', fn () => 'Welcome to the admin dashboard!');
+});
+
+Route::group(['prefix' => 'student'], function () {
+    Route::get('dashboard', fn () => 'Welcome to the student dashboard!');
+});
+
+Route::group(['prefix' => 'contestant'], function () {
+    Route::get('dashboard', fn () => 'Welcome to the contestant dashboard!');
+});
