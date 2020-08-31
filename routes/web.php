@@ -31,8 +31,10 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::group(['prefix' => 'admin', 'middleware' => 'role:admin'], function () {
    Route::get('dashboard', 'Admin\DashboardController')->name('admin.dashboard');
-   Route::get('accounts/dashboard', 'Admin\Account\AccountController@index')->name('accounts.dashboard');
+   Route::get('accounts/dashboard', 'Admin\Account\AccountController@index')->name('admin.accounts.dashboard');
    Route::get('election/dashboard', 'Admin\Election\ElectionController@index');
+   Route::get('session/create', 'Admin\Session\SessionController@create')->name('admin.sessions.create');
+   Route::get('polls/create', 'Admin\Poll\PollController@create')->name('admin.polls.create');
 });
 
 Route::group(['prefix' => 'student', 'middleware' => 'role:student'], function () {

@@ -16,7 +16,7 @@ class AccountTest extends TestCase
     public function testAccount()
     {
         $this->withoutMiddleware();
-        $response = $this->get(route('accounts.dashboard'));
+        $response = $this->get(route('admin.accounts.dashboard'));
 
         $response->assertStatus(200);
     }

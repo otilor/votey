@@ -16,7 +16,7 @@ class AdminTest extends TestCase
     public function testAdminDashboard()
     {
         $this->withoutMiddleware();
-        $response = $this->get('/admin/dashboard');
+        $response = $this->get(route('admin.dashboard'));
 
         $response->assertStatus(200);
     }
