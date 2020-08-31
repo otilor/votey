@@ -1,0 +1,4 @@
+@extends('layouts.app')
+@section('content')
+<h1>New view created!</h1>
+@endsection
