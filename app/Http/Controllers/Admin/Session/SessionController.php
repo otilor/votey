@@ -4,10 +4,16 @@ namespace App\Http\Controllers\Admin\Session;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CreateSessionRequest;
+use App\Session;
 use Illuminate\Http\Request;
 
 class SessionController extends Controller
 {
+    public function __construct()
+    {
+        $this->session = new Session();
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -36,6 +42,7 @@ class SessionController extends Controller
      */
     public function store(CreateSessionRequest $request)
     {
+        $this->session->create($request->validated());
         flash(__('Session stored!'))->success()->important();
         return back();
     }
