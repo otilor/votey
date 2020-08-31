@@ -6,7 +6,7 @@
     <div class="">
         <ul class="list-group list-group-flush">
             @forelse($sessions as $session)
-            <li class="list-group-item">{{ $session->title  }}<span style="float: right" class="btn btn-danger">Delete</span><span style="float: right" class="btn mx-1 btn-primary">Edit</span></li>
+            <li class="list-group-item">{{ $session->title  }}<span style="float: right"><a class="btn btn-danger" href="#">Delete</a> <a class="btn btn-primary" href="/admin/sessions/{{ $session->id  }}/edit">Edit</a></span></li>
             @empty
                 <p>No sessions</p>
             @endforelse
