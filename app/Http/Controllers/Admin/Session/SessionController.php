@@ -21,7 +21,8 @@ class SessionController extends Controller
      */
     public function index()
     {
-        return view('admin.sessions.index');
+        $sessions = $this->session->all();
+        return view('admin.sessions.index', compact('sessions'));
     }
 
     /**
