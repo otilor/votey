@@ -36,7 +36,8 @@ class SessionController extends Controller
      */
     public function store(CreateSessionRequest $request)
     {
-        //
+        flash(__('Session stored!'))->success()->important();
+        return back();
     }
 
     /**

@@ -33,6 +33,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'role:admin'], function () {
    Route::get('dashboard', 'Admin\DashboardController')->name('admin.dashboard');
    Route::get('accounts/dashboard', 'Admin\Account\AccountController@index')->name('admin.accounts.dashboard');
    Route::get('election/dashboard', 'Admin\Election\ElectionController@index');
+   Route::post('sessions/store', 'Admin\Session\SessionController@store')->name('admin.sessions.store');
    Route::resource('sessions', 'Admin\Session\SessionController');
    Route::resource('polls', 'Admin\Poll\PollController');
 });
