@@ -30,15 +30,17 @@ Route::get('upgrade', fn () => auth()->user()->assignRole('admin'));
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::group(['prefix' => 'admin', 'middleware' => 'role:admin'], function () {
-   Route::get('dashboard', 'Admin\DashboardController');
+   Route::get('dashboard', 'Admin\DashboardController')->name('admin.dashboard');
    Route::get('account/dashboard', 'Admin\Account\AccountController@index');
    Route::get('election/dashboard', 'Admin\Election\ElectionController@index');
 });
 
 Route::group(['prefix' => 'student', 'middleware' => 'role:student'], function () {
-    Route::get('dashboard', fn () => 'Welcome to the student dashboard!');
+    Route::get('dashboard', fn () => 'Welcome to the student dashboard!')->name('student.dashboard');
 });
 
 Route::group(['prefix' => 'contestant', 'middleware' => 'role:contestant'], function () {
-    Route::get('dashboard', fn () => 'Welcome to the contestant dashboard!');
+    Route::get('dashboard', fn () => 'Welcome to the contestant dashboard!')->name('contestant.dashboard');
 });
+
+Route::get('dashboard', fn () => handleDashboard())->middleware('auth');
