@@ -31,7 +31,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::group(['prefix' => 'admin', 'middleware' => 'role:admin'], function () {
    Route::get('dashboard', 'Admin\DashboardController')->name('admin.dashboard');
-   Route::get('account/dashboard', 'Admin\Account\AccountController@index');
+   Route::get('accounts/dashboard', 'Admin\Account\AccountController@index')->name('accounts.dashboard');
    Route::get('election/dashboard', 'Admin\Election\ElectionController@index');
 });
 

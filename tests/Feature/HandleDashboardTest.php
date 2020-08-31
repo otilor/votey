@@ -18,6 +18,6 @@ class HandleDashboardTest extends TestCase
 
         $response = $this->get('/dashboard');
 
-        $response->assertStatus(3022);
+        $response->assertStatus(302);
     }
 }
