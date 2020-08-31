@@ -7,7 +7,7 @@
             <div class="card-body">
                 <h5 class="card-title">Create sessions</h5>
                 <p class="card-text">Create different academic sessions</p>
-                <a href="{{ route('admin.sessions.create')  }}" class="btn btn-dark">Create</a>
+                <a href="/admin/sessions/create" class="btn btn-dark">Create</a>
             </div>
         </div>
     </div>
@@ -16,7 +16,7 @@
             <div class="card-body">
                 <h5 class="card-title">Create polls</h5>
                 <p class="card-text">Create different polls for one or more sessions </p>
-                <a href="{{ route('admin.polls.create')  }}" class="btn btn-primary">Create</a>
+                <a href="/admin/polls/create" class="btn btn-primary">Create</a>
             </div>
         </div>
     </div>
