@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content')
     <div class="container">
-        <form action = "/admin/sessions/store" method="post">
+        <form action = "/admin/sessions" method="post">
             @csrf
             @include('inc.messages')
             <div class="form-group">

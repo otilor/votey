@@ -45,7 +45,7 @@ class SessionController extends Controller
     {
         $this->session->create($request->validated());
         flash(__('Session stored!'))->success()->important();
-        return back();
+        return redirect(route('admin.sessions.index'));
     }
 
     /**
@@ -67,7 +67,8 @@ class SessionController extends Controller
      */
     public function edit($id)
     {
-        //
+        $session = $this->session->findOrFail($id);
+        return view('admin.sessions.edit', compact('session'));
     }
 
     /**
@@ -77,13 +78,15 @@ class SessionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(CreateSessionRequest $request, $id)
     {
-        //
+        $this->session->findOrFail($id)->update($request->validated());
+        flash('Updated successfully!')->success();
+        return redirect(route('admin.sessions.index'));
     }
 
     /**
-     * Remove the specified resource from storage.
+     * * Remove the specified resource from storage.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
