@@ -7,7 +7,6 @@
         <form action = "/admin/sessions/{{$session->id}}" method="post">
             @method('patch')
             @csrf
-            @method('patch')
             <div class="form-group">
                 <label for="exampleFormControlInput1">Title</label>
                 <input type="text" value = "{{ $session->title }}" class="form-control" id="exampleFormControlInput1" name = "title">
