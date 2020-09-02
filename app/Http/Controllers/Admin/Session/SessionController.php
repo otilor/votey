@@ -45,7 +45,7 @@ class SessionController extends Controller
     {
         $this->session->create($request->validated());
         flash(__('Session stored!'))->success()->important();
-        return redirect(route('admin.sessions.index'));
+        return redirect(route('admin.sessions.index'), $request->get('redirectTo'));
     }
 
     /**
@@ -93,6 +93,8 @@ class SessionController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $this->session->find($id)->delete();
+        flash('Deleted successfully')->important();
+        return back();
     }
 }

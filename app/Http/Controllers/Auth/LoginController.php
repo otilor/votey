@@ -20,7 +20,16 @@ class LoginController extends Controller
     |
     */
 
-    use AuthenticatesUsers;
+    use AuthenticatesUsers {
+        redirectPath as laravelRedirectPath;
+    }
+
+    public function redirectPath()
+    {
+        flash(__('Successfully logged in!'))->important()->success();
+
+        return $this->laravelRedirectPath();
+    }
 
     /**
      * Where to redirect users after login.

@@ -3,10 +3,18 @@
 namespace App\Http\Controllers\Admin\Poll;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\CreatePollRequest;
+use App\Poll;
+use App\Session;
 use Illuminate\Http\Request;
 
 class PollController extends Controller
 {
+    public function __construct()
+    {
+        $this->poll = new Poll();
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +22,8 @@ class PollController extends Controller
      */
     public function index()
     {
-        return view('admin.polls.index');
+        $polls = $this->poll->paginate(5);
+        return view('admin.polls.index', compact('polls'));
     }
 
     /**
@@ -24,7 +33,8 @@ class PollController extends Controller
      */
     public function create()
     {
-        //
+        $sessions = Session::paginate(5);
+        return view('admin.polls.create', compact('sessions'));
     }
 
     /**
@@ -33,9 +43,11 @@ class PollController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CreatePollRequest $request)
     {
-        //
+        $this->poll->create($request->validated());
+        flash('Poll created!');
+        return redirect(route('admin.polls.index'));
     }
 
     /**

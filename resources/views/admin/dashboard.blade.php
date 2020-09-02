@@ -1,6 +1,9 @@
 @extends('layouts.app')
 
-@section('content')'
+@section('content')
+    <div class="container">
+        @include('inc.messages')
+    </div>
 <div class="row text-center mx-auto">
     <div class="col-sm-6">
         <div class="card">
