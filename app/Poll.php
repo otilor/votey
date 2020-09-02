@@ -12,11 +12,6 @@ class Poll extends Model
     */
     protected $fillable = [
         'title',
-        'session_id',
+        'session_title',
     ];
-
-    public function session()
-    {
-        return $this->hasOne(Session::class);
-    }
 }

@@ -28,7 +28,7 @@ class CreatePollRequest extends FormRequest
     {
         return [
             'title' => 'required|string|min:6',
-            'session' => 'required|string',
+            'session_title' => 'required|string',
         ];
     }
 }

@@ -15,7 +15,7 @@
                 </div>
 
                 <div class="form-group">
-                    <select class="form-control" name="session" required>
+                    <select name = "session_title"  class="form-control" required>
                         <option disabled selected value> -- choose a session -- </option>
                         @foreach($sessions as $session)
                             <option>{{ $session->title  }}</option>

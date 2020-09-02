@@ -45,6 +45,9 @@ class SessionController extends Controller
     {
         $this->session->create($request->validated());
         flash(__('Session stored!'))->success()->important();
+        if (! is_null($queryString = $request->query('redirectTo'))) {
+            return redirect($queryString);
+        }
         return redirect(route('admin.sessions.index', $request->query('redirectTo')));
     }
 

@@ -4,17 +4,27 @@
     <h3 class="text-center">Polls</h3>
     <hr>
     <div class="container">
-        <a class="btn btn-dark" href="{{ route('admin.polls.create')  }}">Create a new poll</a>
+
         @include('inc.messages')
-        <ul class="list-group list-group-flush">
-            @forelse($polls as $poll)
-                <li class="list-group-item">{{ $poll->title  }}<span style="float: right"><a class="btn btn-danger" href="#">Delete</a> <a class="btn btn-primary" href="/admin/sessions/{{ $session->id  }}/edit">Edit</a></span></li>
-            @empty
-                <hr>
-                <div>
-                    <h4>No Polls yet!</h4>
-                </div>
-            @endforelse
-        </ul>
+        <table class="table table-hover my-1">
+            <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Title</th>
+                <th scope="col">Session</th>
+            </tr>
+            </thead>
+            <tbody>
+            @for($i = 0; $i < count($polls); $i++)
+                <tr>
+                    <th scope="row">{{ $i+1  }}</th>
+                    <td>{{ $polls[$i]->title  }}</td>
+                    <td>{{ $polls[$i]->session_title  }}</td>
+                </tr>
+            @endfor
+            </tbody>
+        </table>
+
+        <a class="btn btn-dark" href="{{ route('admin.polls.create')  }}">Create a new poll</a>
     </div>
 @endsection
