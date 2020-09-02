@@ -4,7 +4,7 @@
     <h3 class="text-center">Polls</h3>
     <hr>
     <div class="container">
-        <a class="btn btn-dark" href="{{ route('polls.create')  }}">Create a new poll</a>
+        <a class="btn btn-dark" href="{{ route('admin.polls.create')  }}">Create a new poll</a>
         @include('inc.messages')
         <ul class="list-group list-group-flush">
             @forelse($polls as $poll)
@@ -12,7 +12,7 @@
             @empty
                 <hr>
                 <div>
-                    <h4>No sessions</h4>
+                    <h4>No Polls yet!</h4>
                 </div>
             @endforelse
         </ul>

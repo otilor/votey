@@ -6,19 +6,21 @@
     <div class="container">
         @include('inc.messages')
         <ul class="list-group list-group-flush">
+
             @forelse($sessions as $session)
-                <form>
-                    <li class="list-group-item" style="float:right;">{{ $session->title  }}</li>
-                    <li class="list-group-item">{{ $session->title  }}<span style="float: right">
-                    <a href = "{{ action('Admin\Session\SessionController@destroy', $session->id)  }}" class="btn btn-danger" href="#">Delete</a>
-                            <a class="btn btn-primary" href="/admin/sessions/{{ $session->id  }}/edit">
-                        Edit</a>
-                </span>
-                    </li>
+                <form action = "{{ route('admin.sessions.destroy', $session->id)  }}"  method="post" id = "deleteSessionForm">
+                    @csrf
+                    @method('delete')
                 </form>
+                    <li class="list-group-item">{{ $session->title  }}
+                            <a href="{{ route('admin.sessions.edit', $session->id ) }}" style="float: right" class="btn btn-outline-info">Edit</a>
+                            <a href="javascript:document.getElementById('deleteSessionForm').submit()" style="float: right" class="mr-2 btn btn-outline-danger">Delete</a>
+                    </li>
+
 
             @empty
                 <p>No sessions</p>
+                <a href="{{ route('admin.sessions.create')  }}" class="btn btn-dark">Create a session</a>
             @endforelse
         </ul>
     </div>
