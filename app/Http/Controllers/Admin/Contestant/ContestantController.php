@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin\Contestant;
 use App\Contestant;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CreateContestantRequest;
+use App\User;
 use Illuminate\Http\Request;
 
 class ContestantController extends Controller
@@ -38,7 +39,8 @@ class ContestantController extends Controller
      */
     public function create($id)
     {
-        return view('admin.contestants.create', compact('id'));
+        $users = User::role('student')->paginate(29);
+        return view('admin.contestants.create', compact('id', 'users'));
     }
 
     /**

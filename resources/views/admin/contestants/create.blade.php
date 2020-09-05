@@ -8,11 +8,11 @@
                 <input type="hidden" value="{{ $id  }}" name = "poll_id">
                     <label for="exampleFormControlSelect1">Choose user</label>
                     <select name="user_id" class="form-control" id="exampleFormControlSelect1">
-                        <option>1- Gabriel</option>
-                        <option>2- Femi Adeniyi</option>
-                        <option>3- Los angeles</option>
-                        <option>4- NEw york</option>
-                        <option>5</option>
+                        @forelse($users as $user)
+                        <option>{{ $user->id . ". " . $user->name }}</option>
+                        @empty
+                            <p>No contestants, yet!</p>
+                        @endforelse
                     </select>
                 </div>
 
