@@ -14,4 +14,9 @@ class Poll extends Model
         'title',
         'session_title',
     ];
+
+    public function contestants()
+    {
+        return $this->hasMany(Contestant::class);
+    }
 }

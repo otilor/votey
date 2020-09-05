@@ -39,6 +39,8 @@ Route::group(['prefix' => 'admin', 'middleware' => 'role:admin'], function () {
    Route::resource('polls', 'Admin\Poll\PollController', [
        'as' => 'admin',
    ]);
+
+   Route::resource('polls/{id}/contestants', 'Admin\Contestant\ContestantController');
 });
 
 Route::group(['prefix' => 'student', 'middleware' => 'role:student'], function () {

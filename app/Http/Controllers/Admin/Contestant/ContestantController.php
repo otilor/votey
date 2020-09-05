@@ -1,18 +1,24 @@
 <?php
 
-namespace App\Http\Controllers\Admin\Poll;
+namespace App\Http\Controllers\Admin\Contestant;
 
+use App\Contestant;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\CreatePollRequest;
-use App\Poll;
-use App\Session;
+use App\Http\Requests\CreateContestantRequest;
 use Illuminate\Http\Request;
 
-class PollController extends Controller
+class ContestantController extends Controller
 {
+    /**
+     * @var $contestant
+     *
+     * Returns a new instance of Contestant
+     */
+    private $contestant;
+
     public function __construct()
     {
-        $this->poll = new Poll();
+        $this->contestant = new Contestant;
     }
 
     /**
@@ -22,8 +28,7 @@ class PollController extends Controller
      */
     public function index()
     {
-        $polls = $this->poll->paginate(5);
-        return view('admin.polls.index', compact('polls'));
+        //
     }
 
     /**
@@ -31,23 +36,27 @@ class PollController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($id)
     {
-        $sessions = Session::paginate(5);
-        return view('admin.polls.create', compact('sessions'));
+        return view('admin.contestants.create', compact('id'));
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param \Illuminate\Http\Request $request
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(CreatePollRequest $request)
+    public function store(CreateContestantRequest $request)
     {
-        $this->poll->create($request->validated());
-        flash('Poll created!');
-        return redirect(route('admin.polls.index'));
+        if (! empty(($this->contestant->where('user_id', $request->user_id)->first()))) {
+            flash(__('User already taken!'))->error();
+            return back();
+        }
+
+        $this->contestant->create($request->validated());
+        flash(__('New contestant added'))->success();
+        return redirect(route('admin.polls.index') . "/{$request->poll_id}");
     }
 
     /**
@@ -58,8 +67,7 @@ class PollController extends Controller
      */
     public function show($id)
     {
-        $poll = $this->poll->find($id);
-        return view('admin.polls.show', compact('poll'));
+        //
     }
 
     /**
