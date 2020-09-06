@@ -11,8 +11,9 @@ class Contestant extends Model
     * @var array
     */
     protected $fillable = [
-        'poll_id',
+        'position_id',
         'user_id',
+        'votes',
     ];
 
     public function user()

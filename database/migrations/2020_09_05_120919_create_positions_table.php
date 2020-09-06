@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateContestantsTable extends Migration
+class CreatePositionsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,11 @@ class CreateContestantsTable extends Migration
      */
     public function up()
     {
-        Schema::create('contestants', function (Blueprint $table) {
+        Schema::create('positions', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('user_id');
-            $table->unsignedBigInteger('position_id');
-            $table->unsignedSmallInteger('votes');
+            $table->string('title');
+            $table->mediumText('description');
+            $table->unsignedSmallInteger('poll_id');
             $table->timestamps();
         });
     }
@@ -29,6 +29,6 @@ class CreateContestantsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('contestants');
+        Schema::dropIfExists('positions');
     }
 }

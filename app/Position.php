@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Poll extends Model
+class Position extends Model
 {
     /**
     * The attributes that are mass assignable.
@@ -12,11 +12,13 @@ class Poll extends Model
     */
     protected $fillable = [
         'title',
-        'session_title',
+        'description',
+        'poll_id',
     ];
 
-    public function positions()
+    public function contestants()
     {
-        return $this->hasMany(Position::class);
+        return $this->hasMany(Contestant::class);
     }
+
 }

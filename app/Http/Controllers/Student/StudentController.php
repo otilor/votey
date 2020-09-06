@@ -1,28 +1,13 @@
 <?php
 
-namespace App\Http\Controllers\Admin\Contestant;
+namespace App\Http\Controllers\Student;
 
-use App\Contestant;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\CreateContestantRequest;
-use App\User;
+use App\Poll;
 use Illuminate\Http\Request;
-use Illuminate\Support\Arr;
 
-class ContestantController extends Controller
+class StudentController extends Controller
 {
-    /**
-     * @var $contestant
-     *
-     * Returns a new instance of Contestant
-     */
-    private $contestant;
-
-    public function __construct()
-    {
-        $this->contestant = new Contestant;
-    }
-
     /**
      * Display a listing of the resource.
      *
@@ -30,7 +15,8 @@ class ContestantController extends Controller
      */
     public function index()
     {
-        //
+        $polls = Poll::all();
+        return view('student.dashboard', compact('polls'));
     }
 
     /**
@@ -38,10 +24,9 @@ class ContestantController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create($id, $position)
+    public function create()
     {
-        $users = User::role('student')->paginate(29);
-        return view('admin.contestants.create', compact('id', 'users', 'position'));
+        //
     }
 
     /**
@@ -50,17 +35,9 @@ class ContestantController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(CreateContestantRequest $request)
+    public function store(Request $request)
     {
-        if (! empty(($this->contestant->where('user_id', $request->user_id)->first()))) {
-            flash(__('User already taken!'))->error();
-            return back();
-        }
-//        $request->request->add(['votes' => 0]);
-        $validatedRequest =  array_merge($request->validated(), ['votes' => 0]);
-        $this->contestant->create($validatedRequest);
-        flash(__('New contestant added'))->success();
-        return redirect(route('admin.polls.index') . "/{$request->poll_id}");
+        //
     }
 
     /**

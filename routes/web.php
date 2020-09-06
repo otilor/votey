@@ -40,11 +40,16 @@ Route::group(['prefix' => 'admin', 'middleware' => 'role:admin'], function () {
        'as' => 'admin',
    ]);
 
-   Route::resource('polls/{id}/contestants', 'Admin\Contestant\ContestantController');
+   Route::resource('polls/{id}/positions', 'Admin\Position\PositionController');
+   Route::resource('polls/{id}/positions/{position}/contestants', 'Admin\Contestant\ContestantController');
 });
 
 Route::group(['prefix' => 'student', 'middleware' => 'role:student'], function () {
-    Route::get('dashboard', fn () => 'Welcome to the student dashboard!')->name('student.dashboard');
+    Route::get('dashboard', 'Student\StudentController@index')->name('student.dashboard');
+    Route::resource('polls', 'Student\PollController', [
+        'as' => 'student',
+    ]);
+
 });
 
 Route::group(['prefix' => 'contestant', 'middleware' => 'role:contestant'], function () {

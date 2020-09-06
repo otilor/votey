@@ -1,28 +1,23 @@
 <?php
 
-namespace App\Http\Controllers\Admin\Contestant;
+namespace App\Http\Controllers\Admin\Position;
 
-use App\Contestant;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\CreateContestantRequest;
-use App\User;
+use App\Http\Requests\CreatePositionRequest;
+use App\Position;
 use Illuminate\Http\Request;
-use Illuminate\Support\Arr;
 
-class ContestantController extends Controller
+class PositionController extends Controller
 {
     /**
-     * @var $contestant
-     *
-     * Returns a new instance of Contestant
+     * @var Position $position
      */
-    private $contestant;
+    protected $position;
 
     public function __construct()
     {
-        $this->contestant = new Contestant;
+        $this->position = new Position;
     }
-
     /**
      * Display a listing of the resource.
      *
@@ -38,10 +33,9 @@ class ContestantController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create($id, $position)
+    public function create($id)
     {
-        $users = User::role('student')->paginate(29);
-        return view('admin.contestants.create', compact('id', 'users', 'position'));
+        return view('admin.positions.create', compact('id'));
     }
 
     /**
@@ -50,17 +44,11 @@ class ContestantController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(CreateContestantRequest $request)
+    public function store(CreatePositionRequest $request)
     {
-        if (! empty(($this->contestant->where('user_id', $request->user_id)->first()))) {
-            flash(__('User already taken!'))->error();
-            return back();
-        }
-//        $request->request->add(['votes' => 0]);
-        $validatedRequest =  array_merge($request->validated(), ['votes' => 0]);
-        $this->contestant->create($validatedRequest);
-        flash(__('New contestant added'))->success();
-        return redirect(route('admin.polls.index') . "/{$request->poll_id}");
+        $this->position->create($request->validated());
+        flash(__('Position created successfully!'));
+        return back();
     }
 
     /**
@@ -71,7 +59,7 @@ class ContestantController extends Controller
      */
     public function show($id)
     {
-        //
+        return view('admin.positions.show', ['position' => $this->position->findOrFail($id)]);
     }
 
     /**

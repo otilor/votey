@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class CreateContestantRequest extends FormRequest
+class CreatePositionRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -13,7 +13,7 @@ class CreateContestantRequest extends FormRequest
      */
     public function authorize()
     {
-        if (! auth()->user()->hasRole('admin') ) {
+        if (! auth()->user()->hasRole('admin')) {
             return false;
         }
 
@@ -28,8 +28,9 @@ class CreateContestantRequest extends FormRequest
     public function rules()
     {
         return [
-            'position_id' => 'required',
-            'user_id' => 'required|string',
+            'title' => 'required',
+            'description' => 'required',
+            'poll_id' => 'required',
         ];
     }
 }
