@@ -1,17 +1,19 @@
 @extends('layouts.app')
-@section('content')
-    <div class="container">
-        <h2 class="text-center">{{ $poll->title  }}</h2>
-        <hr>
 
-        <h5 class="text-uppercase">Positions</h5>
-        @forelse($poll->positions as $position)
-        <div class="card">
-            <div class="card-header">{{ $position->title  }}</div>
-            <div class="card-body">Description</div>
-        </div>
-        @empty
-            <p>No contestants</p>
-        @endforelse
+@section('content')
+    <h3 class="text-center">Positions</h3>
+    <hr>
+    <div class="container">
+        @include('inc.messages')
+        <ul class="list-group list-group-flush">
+
+            @forelse($poll->positions as $position)
+                <li class="list-group-item">{{ $position->title  }}
+                        <a href="/student/polls/{{ $poll->id  }}/positions/{{ $position->id  }}" style="float: right" class="btn btn-outline-info">View</a>
+                </li>
+            @empty
+                <p>No positions</p>
+            @endforelse
+        </ul>
     </div>
 @endsection
