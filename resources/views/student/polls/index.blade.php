@@ -18,8 +18,7 @@
 
 
             @empty
-                <p>No polls</p>
-                <a href="{{ route('student.polls.create')  }}" class="btn btn-dark">Create a poll</a>
+                <p>No polls yet! Check back later.</p>
             @endforelse
         </ul>
     </div>

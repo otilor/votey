@@ -60,7 +60,7 @@ class PollController extends Controller
      */
     public function show($id)
     {
-        //
+        return view('student.polls.show', ['poll' => $this->poll->find($id)]);
     }
 
     /**
