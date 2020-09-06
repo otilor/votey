@@ -11,7 +11,9 @@ class Position extends Model
     * @var array
     */
     protected $fillable = [
-        //
+        'title',
+        'description',
+        'poll_id',
     ];
 
 }

@@ -40,7 +40,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'role:admin'], function () {
        'as' => 'admin',
    ]);
 
-   Route::resource('polls/{id}/contestants', 'Admin\Contestant\ContestantController');
+   Route::resource('polls/{id}/positions', 'Admin\Position\PositionController');
 });
 
 Route::group(['prefix' => 'student', 'middleware' => 'role:student'], function () {

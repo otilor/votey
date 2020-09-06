@@ -8,13 +8,13 @@
         <p>Session: {{ $poll->session_title  }}</p>
 
     <hr>
-        <p class="text-center">Contestants</p>
-        @forelse($poll->contestants as $contestant)
-            <p>Whatever</p>
+        <p class="text-center">Positions</p>
+        @forelse($poll->positions as $position)
+            <p>{{ $position->title  }}</p>
         @empty
-            <p>No contestants yet!</p>
+            <p>No positions yet!</p>
         @endforelse
-        <a href="{{ route('admin.polls.index')  }}/{{ $poll->id  }}/contestants/create" class="btn btn-success">Add</a>
+        <a href="{{ route('admin.polls.index')  }}/{{ $poll->id  }}/positions/create" class="btn btn-success">Add</a>
     </div>
 
 @endsection
