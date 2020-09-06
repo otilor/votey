@@ -49,7 +49,10 @@ Route::group(['prefix' => 'student', 'middleware' => 'role:student'], function (
     Route::resource('polls', 'Student\PollController', [
         'as' => 'student',
     ]);
-    Route::resource('polls/{id}/positions', 'Student\PositionController');
+    Route::resource('polls/{id}/positions', 'Student\PositionController', [
+        'as' => 'student.polls.positions',
+    ]);
+    Route::post('contestants/vote', 'Student\ContestantController@store')->name('student.contestant.vote');
 
 });
 

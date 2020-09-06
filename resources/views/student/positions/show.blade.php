@@ -11,11 +11,19 @@
         </div>
 
         <div class="my-2">
+
             <h5>Contestants</h5>
             <ul class="list-group list-group-flush">
                 @forelse($position->contestants as $contestant)
+
+                    <form action = "{{ route('student.contestant.vote')  }}" method="post" id="voteContestantForm">
+                        @csrf
+                        <input type="hidden" name = "contestant_id" value="{{ $contestant->id  }}">
+                    </form>
+
                     <li class="list-group-item">{{ $contestant->user->name  }} <span class="badge badge-danger">{{ $contestant->votes  }} votes</span>
-                        <a href="" style="float: right" class="btn btn-success">Vote</a>
+                        <a href="javascript:document.getElementById('voteContestantForm').submit()" style="float: right" class="mr-2 btn btn-success">Vote</a>
+
                     </li>
                 @empty
                     <p>No contestants, yet. Check later.</p>
