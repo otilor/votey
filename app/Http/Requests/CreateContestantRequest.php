@@ -28,7 +28,7 @@ class CreateContestantRequest extends FormRequest
     public function rules()
     {
         return [
-            'poll_id' => 'required|string',
+            'position_id' => 'required',
             'user_id' => 'required|string',
         ];
     }

@@ -59,7 +59,7 @@ class PositionController extends Controller
      */
     public function show($id)
     {
-        //
+        return view('admin.positions.show', ['position' => $this->position->findOrFail($id)]);
     }
 
     /**

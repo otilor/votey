@@ -5,7 +5,7 @@
         <hr>
 
         <h5 class="text-uppercase">Positions</h5>
-        @forelse($poll->positons as $position)
+        @forelse($poll->positions as $position)
         <div class="card">
             <div class="card-header">{{ $position->title  }}</div>
             <div class="card-body">Description</div>

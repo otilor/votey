@@ -16,4 +16,9 @@ class Position extends Model
         'poll_id',
     ];
 
+    public function contestants()
+    {
+        return $this->hasMany(Contestant::class);
+    }
+
 }

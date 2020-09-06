@@ -10,7 +10,7 @@
     <hr>
         <p class="text-center">Positions</p>
         @forelse($poll->positions as $position)
-            <p>{{ $position->title  }}</p>
+            <p>{{ $position->title  }} <a href="/admin/polls/{{ $poll->id  }}/positions/{{ $position->id  }}" class="btn btn-outline-info">View</a></p>
         @empty
             <p>No positions yet!</p>
         @endforelse

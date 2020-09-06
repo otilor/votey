@@ -1,11 +1,11 @@
 @extends('layouts.app')
 @section('content')
     <div class="container">
-        <form action = "{{ route('admin.polls.index')  }}/{{ $id  }}/contestants" method="post">
+        <form action = "{{ route('admin.polls.index')  }}/{{ $id  }}/positions/{{ $position  }}/contestants" method="post">
             @csrf
             @include('inc.messages')
+            <input type="hidden" value="{{ $position }}" name = "position_id">
             <div class="form-group">
-                <input type="hidden" value="{{ $id  }}" name = "poll_id">
                     <label for="exampleFormControlSelect1">Choose user</label>
                     <select name="user_id" class="form-control" id="exampleFormControlSelect1">
                         @forelse($users as $user)

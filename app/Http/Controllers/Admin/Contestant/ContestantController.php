@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\CreateContestantRequest;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Arr;
 
 class ContestantController extends Controller
 {
@@ -37,10 +38,10 @@ class ContestantController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create($id)
+    public function create($id, $position)
     {
         $users = User::role('student')->paginate(29);
-        return view('admin.contestants.create', compact('id', 'users'));
+        return view('admin.contestants.create', compact('id', 'users', 'position'));
     }
 
     /**
@@ -55,8 +56,9 @@ class ContestantController extends Controller
             flash(__('User already taken!'))->error();
             return back();
         }
-
-        $this->contestant->create($request->validated());
+//        $request->request->add(['votes' => 0]);
+        $validatedRequest =  array_merge($request->validated(), ['votes' => 0]);
+        $this->contestant->create($validatedRequest);
         flash(__('New contestant added'))->success();
         return redirect(route('admin.polls.index') . "/{$request->poll_id}");
     }
