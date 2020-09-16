@@ -2,6 +2,10 @@
 
 function handleDashboard()
 {
+    if (! auth()->check()) {
+        abort(401);
+    }
+    
     if (auth()->user()->hasRole('admin')) {
         return redirect(route('admin.dashboard'));
     }
