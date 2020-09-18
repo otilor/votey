@@ -7,12 +7,11 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\CreateContestantRequest;
 use App\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Arr;
 
 class ContestantController extends Controller
 {
     /**
-     * @var $contestant
+     * @var
      *
      * Returns a new instance of Contestant
      */
@@ -20,7 +19,7 @@ class ContestantController extends Controller
 
     public function __construct()
     {
-        $this->contestant = new Contestant;
+        $this->contestant = new Contestant();
     }
 
     /**
@@ -41,32 +40,37 @@ class ContestantController extends Controller
     public function create($id, $position)
     {
         $users = User::role('student')->paginate(29);
+
         return view('admin.contestants.create', compact('id', 'users', 'position'));
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
+     *
      * @return \Illuminate\Http\Response
      */
     public function store(CreateContestantRequest $request)
     {
-        if (! empty(($this->contestant->where('user_id', $request->user_id)->first()))) {
+        if (!empty(($this->contestant->where('user_id', $request->user_id)->first()))) {
             flash(__('User already taken!'))->error();
+
             return back();
         }
 //        $request->request->add(['votes' => 0]);
-        $validatedRequest =  array_merge($request->validated(), ['votes' => 0]);
+        $validatedRequest = array_merge($request->validated(), ['votes' => 0]);
         $this->contestant->create($validatedRequest);
         flash(__('New contestant added'))->success();
-        return redirect(route('admin.polls.index') . "/{$request->poll_id}");
+
+        return redirect(route('admin.polls.index')."/{$request->poll_id}");
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -77,7 +81,8 @@ class ContestantController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -88,8 +93,9 @@ class ContestantController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param \Illuminate\Http\Request $request
+     * @param int                      $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -100,7 +106,8 @@ class ContestantController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)

@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Admin\Session;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CreateSessionRequest;
 use App\Session;
-use Illuminate\Http\Request;
 
 class SessionController extends Controller
 {
@@ -22,6 +21,7 @@ class SessionController extends Controller
     public function index()
     {
         $sessions = $this->session->all();
+
         return view('admin.sessions.index', compact('sessions'));
     }
 
@@ -38,23 +38,26 @@ class SessionController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
+     *
      * @return \Illuminate\Http\Response
      */
     public function store(CreateSessionRequest $request)
     {
         $this->session->create($request->validated());
         flash(__('Session stored!'))->success()->important();
-        if (! is_null($queryString = $request->query('redirectTo'))) {
+        if (!is_null($queryString = $request->query('redirectTo'))) {
             return redirect($queryString);
         }
+
         return redirect(route('admin.sessions.index', $request->query('redirectTo')));
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -65,39 +68,45 @@ class SessionController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
         $session = $this->session->findOrFail($id);
+
         return view('admin.sessions.edit', compact('session'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param \Illuminate\Http\Request $request
+     * @param int                      $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function update(CreateSessionRequest $request, $id)
     {
         $this->session->findOrFail($id)->update($request->validated());
         flash('Updated successfully!')->success();
+
         return redirect(route('admin.sessions.index'));
     }
 
     /**
      * * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
         $this->session->find($id)->delete();
         flash('Deleted successfully')->important()->error();
+
         return back();
     }
 }

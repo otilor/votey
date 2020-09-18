@@ -13,9 +13,10 @@ class CreatePollRequest extends FormRequest
      */
     public function authorize()
     {
-        if (! auth()->user()->hasRole('admin')) {
+        if (!auth()->user()->hasRole('admin')) {
             return false;
         }
+
         return true;
     }
 
@@ -27,7 +28,7 @@ class CreatePollRequest extends FormRequest
     public function rules()
     {
         return [
-            'title' => 'required|string|min:6',
+            'title'         => 'required|string|min:6',
             'session_title' => 'required|string',
         ];
     }

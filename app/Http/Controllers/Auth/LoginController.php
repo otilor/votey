@@ -51,11 +51,11 @@ class LoginController extends Controller
     public function authenticated(Request $request, $user)
     {
         if ($user->hasRole('admin')) {
-            $this->redirectTo = "/admin/dashboard";
+            $this->redirectTo = '/admin/dashboard';
         } elseif ($user->hasRole('contestant')) {
-            $this->redirectTo = "/contestant/dashboard";
+            $this->redirectTo = '/contestant/dashboard';
         } elseif ($user->haSRole('student')) {
-            $this->redirectTo = "/student/dashboard";
+            $this->redirectTo = '/student/dashboard';
         } else {
             $this->redirectTo = RouteServiceProvider::HOME;
         }
