@@ -23,6 +23,7 @@ class PollController extends Controller
     public function index()
     {
         $polls = $this->poll->paginate(5);
+
         return view('admin.polls.index', compact('polls'));
     }
 
@@ -34,6 +35,7 @@ class PollController extends Controller
     public function create()
     {
         $sessions = Session::paginate(5);
+
         return view('admin.polls.create', compact('sessions'));
     }
 
@@ -41,31 +43,36 @@ class PollController extends Controller
      * Store a newly created resource in storage.
      *
      * @param \Illuminate\Http\Request $request
+     *
      * @return \Illuminate\Http\Response
      */
     public function store(CreatePollRequest $request)
     {
         $this->poll->create($request->validated());
         flash('Poll created!');
+
         return redirect(route('admin.polls.index'));
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function show($id)
     {
         $poll = $this->poll->find($id);
+
         return view('admin.polls.show', compact('poll'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -76,8 +83,9 @@ class PollController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param \Illuminate\Http\Request $request
+     * @param int                      $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -88,7 +96,8 @@ class PollController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)

@@ -2,8 +2,6 @@
 
 namespace Tests\Feature;
 
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
 class RegisterTest extends TestCase
@@ -17,13 +15,13 @@ class RegisterTest extends TestCase
     {
         $faker = \Faker\Factory::create();
         $data = [
-            'name' => $faker->name,
-            'email' => $faker->email,
-            'password' => 'password',
+            'name'                  => $faker->name,
+            'email'                 => $faker->email,
+            'password'              => 'password',
             'password_confirmation' => 'password',
         ];
 
-        $response = $this->withHeaders(['X-Header' => 'Value',])->json('POST', '/register', $data);
+        $response = $this->withHeaders(['X-Header' => 'Value'])->json('POST', '/register', $data);
         $response->assertStatus(201);
     }
 }

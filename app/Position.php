@@ -7,9 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 class Position extends Model
 {
     /**
-    * The attributes that are mass assignable.
-    * @var array
-    */
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
     protected $fillable = [
         'title',
         'description',
@@ -20,5 +21,4 @@ class Position extends Model
     {
         return $this->hasMany(Contestant::class);
     }
-
 }

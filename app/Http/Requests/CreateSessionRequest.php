@@ -16,6 +16,7 @@ class CreateSessionRequest extends FormRequest
         if (auth()->user()->hasRole('admin')) {
             return true;
         }
+
         return false;
     }
 

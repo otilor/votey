@@ -13,7 +13,7 @@ class CreateContestantRequest extends FormRequest
      */
     public function authorize()
     {
-        if (! auth()->user()->hasRole('admin') ) {
+        if (!auth()->user()->hasRole('admin')) {
             return false;
         }
 
@@ -29,7 +29,7 @@ class CreateContestantRequest extends FormRequest
     {
         return [
             'position_id' => 'required',
-            'user_id' => 'required|string',
+            'user_id'     => 'required|string',
         ];
     }
 }

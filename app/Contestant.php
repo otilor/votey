@@ -7,9 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 class Contestant extends Model
 {
     /**
-    * The attributes that are mass assignable.
-    * @var array
-    */
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
     protected $fillable = [
         'position_id',
         'user_id',
@@ -25,5 +26,4 @@ class Contestant extends Model
     {
         $this->attributes['user_id'] = $userId[0];
     }
-
 }

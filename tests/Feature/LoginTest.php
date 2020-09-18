@@ -2,11 +2,6 @@
 
 namespace Tests\Feature;
 
-use App\Console\Commands\TestUniqueUser;
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
-use Illuminate\Support\Facades\Artisan;
-use Illuminate\Support\Facades\Log;
 use Tests\TestCase;
 
 class LoginTest extends TestCase

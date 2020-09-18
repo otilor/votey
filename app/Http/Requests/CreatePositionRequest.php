@@ -13,7 +13,7 @@ class CreatePositionRequest extends FormRequest
      */
     public function authorize()
     {
-        if (! auth()->user()->hasRole('admin')) {
+        if (!auth()->user()->hasRole('admin')) {
             return false;
         }
 
@@ -28,9 +28,9 @@ class CreatePositionRequest extends FormRequest
     public function rules()
     {
         return [
-            'title' => 'required',
+            'title'       => 'required',
             'description' => 'required',
-            'poll_id' => 'required',
+            'poll_id'     => 'required',
         ];
     }
 }
