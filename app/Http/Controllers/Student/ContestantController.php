@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 class ContestantController extends Controller
 {
     /**
-     * @var 
+     * @var
      */
     protected $contestant;
 
