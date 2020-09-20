@@ -25,7 +25,6 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Auth::routes();
 
-Route::get('upgrade', fn () => auth()->user()->assignRole('admin'));
 
 Route::get('/home', 'HomeController@index')->name('home');
 
